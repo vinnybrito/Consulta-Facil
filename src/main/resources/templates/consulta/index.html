@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+>
     <title>Consulta Fácil - Consultas</title>
 </head>
 <body>
@@ -10,9 +12,19 @@
 
     <h2>Consultas Agendadas</h2>
 
+    <div th:each="consulta : ${consultas}">
+
+    </div>
+
     <ul>
         <li th:each="consulta : ${consultas}" th:text="${consulta}"></li>
     </ul>
+
+    <div class="container">
+        <div class="notification is-primary">
+          This container is <strong>centered</strong> on desktop and larger viewports.
+        </div>
+      </div>
 
     <!--<p th:text="${consultas}"></p>-->
     
