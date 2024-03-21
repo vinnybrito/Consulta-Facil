@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,13 @@
 <body>
     <h1>Consulta Fácil</h1>
 
-    <h2>Consultas Marcadas</h2>
+    <h2>Consultas Agendadas</h2>
+
+    <ul>
+        <li th:each="consulta : ${consultas}" th:text="${consulta}"></li>
+    </ul>
+
+    <!--<p th:text="${consultas}"></p>-->
     
 </body>
 </html>
