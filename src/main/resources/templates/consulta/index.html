@@ -19,9 +19,10 @@
 
     <div class="nes-container is-rounded is-dark" th:if="${message != null}">
         <p th:text="${message}"></p>
-      </div>
+    </div>
 
     <section class="grid">
+
         <div th:each="consulta : ${consultas}" class="nes-container with-title">
             <p class="title" th:text="${consulta.tipoconsulta}"></p>
             <p th:text="${consulta.motivo}"></p>
@@ -35,9 +36,15 @@
                 <summary>Opções do agendamento</summary>
                 <button type="button" class="nes-btn is-primary">Ver Consulta</button>
                 <button type="button" class="nes-btn is-warning">Editar</button>
-                <a th:href="${'/consultas/delete/' + consulta.id}" class="nes-btn is-error">Cancelar</a>
+                <form th:action="${'/consultas/' + consulta.id}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="nes-btn is-error">cancelar</button>
+                </form>
+
+                <!-- <a th:href="${'/consultas/delete/' + consulta.id}" class="nes-btn is-error">Cancelar</a> -->
             </details>
         </div>
+        
     </section>
 
 </body>

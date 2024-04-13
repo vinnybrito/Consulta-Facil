@@ -11,12 +11,6 @@ body {
     
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* ------------------------- RESPONSIVIDADE -------------------------*/
 
 @media (max-width: 1200px){
     .grid{
@@ -34,4 +28,15 @@ body {
     .grid{
         grid-template-columns: 1fr;
     }
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }

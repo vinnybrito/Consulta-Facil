@@ -12,31 +12,30 @@
 <body>
 
     <h1>Consulta Facil</h1>
-    <h2>Agendar consultas</h2>
+    <h2 th:text="#{consulta.create}"></h2>
 
-    <form action="/consultas" class="container" method="POST">
-
+    <form action="/consultas" class="container" method="POST" th:object="${consulta}">
         <div class="nes-field">
-            <label for="tipoconsulta">Tipo de Consulta</label>
-            <input name="tipoconsulta" type="text" id="tipoconsulta" class="nes-input">
+            <label for="tipoconsulta">Tipo Consulta</label>
+            <input th:field="*{tipoconsulta}" class="nes-input" th:classappend="${#fields.hasErrors('tipoconsulta')} ? is-error" >
+            <span class="nes-text is-error" th:errors="*{tipoconsulta}"></span>
         </div>
 
         <div class="nes-field">
             <label for="motivo">Motivo</label>
-            <textarea name="motivo" id="motivo" class="nes-textarea"></textarea>
+            <textarea th:field="*{motivo}" class="nes-textarea" th:classappend="${#fields.hasErrors('motivo')} ? is-error" ></textarea>
+            <span class="nes-text is-error" th:errors="*{motivo}"></span>
         </div>
-        
+
         <div class="nes-field">
-            <label for="valorconsulta">Valor Consulta</label>
-            <input name="valorconsulta" type="number" id="valorconsulta" class="nes-input">
+            <label for="valorconsulta">Valor</label>
+            <input th:field="*{valorconsulta}" type="number" class="nes-input" th:classappend="${#fields.hasErrors('valorconsulta')} ? is-error"  >
+            <span class="nes-text is-error" th:errors="*{valorconsulta}"></span>
         </div>
 
-        <a class="nes-btn" href="/consultas">Cancelar</a>
-        <input type="submit" class="nes-btn is-primary" value="Registrar Consulta">
-
+        <a class="nes-btn" href="/consultas">cancelar</a>
+        <input type="submit" class="nes-btn is-primary" value="cadastrar">
     </form>
-
-    
 
 </body>
 

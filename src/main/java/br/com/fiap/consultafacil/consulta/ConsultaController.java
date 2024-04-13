@@ -1,20 +1,18 @@
 package br.com.fiap.consultafacil.consulta;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -24,13 +22,16 @@ public class ConsultaController {
     @Autowired
     ConsultaRepository repository;
 
+    @Autowired
+    MessageSource messageSource;
+
     @GetMapping
     public String index(Model model) {
         model.addAttribute("consultas", repository.findAll());
         return "consulta/index";
     }
 
-    @GetMapping("delete/{id}")           
+    @GetMapping("{id}")           
     public String delete(@PathVariable Long id, RedirectAttributes redirect) {
 
         var consulta = repository.findById(id);
@@ -40,18 +41,22 @@ public class ConsultaController {
             return "redirect:/consultas";
         }
 
-        redirect.addFlashAttribute("message", "Consulta, apagada com sucesso");
         repository.deleteById(id);
+        redirect.addFlashAttribute("message", messageSource.getMessage("consulta.delete", null, LocaleContextHolder.getLocale()));
         return "redirect:/consultas";
     }
 
+
     @GetMapping("new")
-    public String form() {
+    public String form(Consulta consulta) {
         return "consulta/form";
     }
 
     @PostMapping
-    public String create(Consulta consulta, RedirectAttributes redirect) {
+    public String create(@Valid Consulta consulta,BindingResult result, RedirectAttributes redirect) {
+
+        if (result.hasErrors()) return "consulta/form";
+
         repository.save(consulta);
         redirect.addFlashAttribute("message", "Consulta, cadastrada com sucesso");
         return "redirect:/consultas";
