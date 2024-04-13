@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="global.css">
->
-    <title>Consulta Fácil - Consultas</title>
+    <title>Consulta - Fácil</title>
 </head>
+
 <body>
-    <h1>Consulta Fácil</h1>
+
+    <h1>Consultas</h1>
 
     <h2>Consultas Agendadas</h2>
 
-    <section class="grid">  
-        <div th:each="consulta : ${consultas}" class="container">
-            <div class="notification is-primary">
-                <p th:text="${consulta}"></p>
-                <p>This container is <strong>centered</strong> on desktop and larger viewports.</p>
-            </div>
+    <a href="/consultas/new" class="nes-btn is-primary">Nova Consulta</a>
+
+    <div class="nes-container is-rounded is-dark" th:if="${message != null}">
+        <p th:text="${message}"></p>
+      </div>
+
+    <section class="grid">
+        <div th:each="consulta : ${consultas}" class="nes-container with-title">
+            <p class="title" th:text="${consulta.tipoconsulta}"></p>
+            <p th:text="${consulta.motivo}"></p>
+            <a href="#" class="nes-badge is-icon">
+                <span class="is-warning"><i class="nes-icon coin is-small"></i></span>
+                <span class="is-primary" th:text="${consulta.valorconsulta}"></span>
+            </a>
+            <progress class="nes-progress is-success" th:value="${consulta.situacao}" max="100"></progress>
+
+            <details>
+                <summary>Opções do agendamento</summary>
+                <button type="button" class="nes-btn is-primary">Ver Consulta</button>
+                <button type="button" class="nes-btn is-warning">Editar</button>
+                <a th:href="${'/consultas/delete/' + consulta.id}" class="nes-btn is-error">Cancelar</a>
+            </details>
         </div>
     </section>
 
-    <ul>
-        <li th:each="consulta : ${consultas}" th:text="${consulta}"></li>
-    </ul>
-
-    
-
-    <!--<p th:text="${consultas}"></p>-->
-    
 </body>
+
 </html>

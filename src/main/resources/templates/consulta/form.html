@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../global.css">
+    <title>Consulta - Marcar Consulta</title>
+</head>
+
+<body>
+
+    <h1>Consulta Facil</h1>
+    <h2>Agendar consultas</h2>
+
+    <form action="/consultas" class="container" method="POST">
+
+        <div class="nes-field">
+            <label for="tipoconsulta">Tipo de Consulta</label>
+            <input name="tipoconsulta" type="text" id="tipoconsulta" class="nes-input">
+        </div>
+
+        <div class="nes-field">
+            <label for="motivo">Motivo</label>
+            <textarea name="motivo" id="motivo" class="nes-textarea"></textarea>
+        </div>
+        
+        <div class="nes-field">
+            <label for="valorconsulta">Valor Consulta</label>
+            <input name="valorconsulta" type="number" id="valorconsulta" class="nes-input">
+        </div>
+
+        <a class="nes-btn" href="/consultas">Cancelar</a>
+        <input type="submit" class="nes-btn is-primary" value="Registrar Consulta">
+
+    </form>
+
+    
+
+</body>
+
+</html>
