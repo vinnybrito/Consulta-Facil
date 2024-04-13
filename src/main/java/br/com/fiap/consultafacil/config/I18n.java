@@ -9,7 +9,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 public class I18n {
     
     @Bean
-    public MessageSource messageSource(){
+    public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setBasename("messages");
         return ms;
