@@ -27,7 +27,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(login -> login
                     .loginPage("/login")
-                    .defaultSuccessUrl("/tasks")
+                    .defaultSuccessUrl("/consultas")
                     .userInfoEndpoint(userInfo -> userInfo.userService(customUserService))
                     .permitAll()   
                 )
