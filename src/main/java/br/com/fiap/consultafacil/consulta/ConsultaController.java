@@ -29,6 +29,9 @@ public class ConsultaController {
     ConsultaRepository repository;
 
     @Autowired
+    ConsultaService service;
+
+    @Autowired
     MessageSource messageSource;
 
     @GetMapping
@@ -72,6 +75,33 @@ public class ConsultaController {
         redirect.addFlashAttribute("message", "Consulta, cadastrada com sucesso");
         return "redirect:/consultas";
     }
+
+    @PostMapping("/catch/{id}")
+    public String catchTask(@PathVariable Long id, @AuthenticationPrincipal DefaultOAuth2User user){
+        User myuser = (User) user;
+        service.catchConsulta(id, myuser);
+        return "redirect:/consultas";
+    }
     
+    @PostMapping("/drop/{id}")
+    public String dropTask(@PathVariable Long id, @AuthenticationPrincipal DefaultOAuth2User user){
+        User myuser = (User) user;
+        service.dropConsulta(id, myuser);
+        return "redirect:/consultas";
+    }
+
+    @PostMapping("/inc/{id}")
+    public String inc(@PathVariable Long id, @AuthenticationPrincipal DefaultOAuth2User user){
+        User myuser = (User) user;
+        service.inc(id, myuser);
+        return "redirect:/consultas";
+    }
+
+    @PostMapping("/dec/{id}")
+    public String dec(@PathVariable Long id, @AuthenticationPrincipal DefaultOAuth2User user){
+        User myuser = (User) user;
+        service.dec(id, myuser);
+        return "redirect:/consultas";
+    }
     
 }

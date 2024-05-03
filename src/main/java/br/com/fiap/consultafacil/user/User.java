@@ -17,7 +17,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity(name = "EpicUser")
+@Entity(name = "ConsultaUser")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class User extends DefaultOAuth2User {
